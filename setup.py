@@ -9,11 +9,8 @@ NEWS = open(os.path.join(here, 'NEWS.txt')).read()
 version = '1.0'
 
 install_requires = [
-    # List your project dependencies here.
-    # For more details, see:
-    # http://packages.python.org/distribute/setuptools.html#declaring-dependencies
+    'requests'
 ]
-
 
 setup(name='pyaeries',
     version=version,

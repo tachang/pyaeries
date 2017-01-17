@@ -71,14 +71,24 @@ class AeriesApi(object):
     def get_student_test_scores(self):
         raise Exception('Not implemented')
 
-    def get_student_class_schedules(self):
-        raise Exception('Not implemented')
+    def get_student_class_schedules(self, school_code, student_id=''):
+        r = requests.get(self.API_HOST + 'api/schools/{}/classes/{}'.format(school_code, student_id), headers=self.headers)
+        return self.process_response(r)
 
-    def get_courses(self):
-        raise Exception('Not implemented')
+    def get_courses(self, course_id=''):
+        r = requests.get(self.API_HOST + 'api/courses/{}'.format(course_id), headers=self.headers)
+        return self.process_response(r)
 
-    def get_course_data_changes(self):        
-        raise Exception('Not implemented')
+    def get_course_data_changes(self, year, month, day, hour, minute):
+        kwargs = {
+            'year': year,
+            'month': month,
+            'day': day,
+            'hour': hour,
+            'minute': minute
+        }
+        r = requests.get(self.api_url + 'coursedatachanges/{year}/{month}/{day}/{hour}/{minute}'.format(**kwargs), headers=self.headers)
+        return self.process_response(r)
 
     def get_staff(self):
         raise Exception('Not implemented')
@@ -86,25 +96,26 @@ class AeriesApi(object):
     def get_staff_data_changes(self):
         raise Exception('Not implemented')
 
-    def get_teachers(self):
-        raise Exception('Not implemented')
+    def get_teachers(self, school_code, teacher_number=''):
+        r = requests.get(self.API_HOST + 'api/schools/{}/teachers/{}'.format(school_code, teacher_number), headers=self.headers)
+        return self.process_response(r)
 
     def get_teachers_with_staffid(self):        
         raise Exception('Not implemented')
 
-    def get_master_schedule_sections(self):
-        raise Exception('Not implemented')
+    def get_master_schedule_sections(self, school_code, section_number=''):
+        r = requests.get(self.API_HOST + 'api/schools/{}/sections/{}'.format(school_code, section_number), headers=self.headers)
+        return self.process_response(r)
 
     def get_master_schedule_sections_changes(self):
         raise Exception('Not implemented')
 
-
-    def get_student_class_schedules(self):
-        """
-        Section Class Roster
-        Class Schedules/History
-        """
-        raise Exception('Not implemented')
+    # def get_student_class_schedules(self):
+    #     """
+    #     Section Class Roster
+    #     Class Schedules/History
+    #     """
+    #     raise Exception('Not implemented')
 
     def get_student_class_schedules_changes(self):
         raise Exception('Not implemented')

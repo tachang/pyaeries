@@ -11,3 +11,4 @@ build
 dist
 
 .cache
+tests/__pycache__
